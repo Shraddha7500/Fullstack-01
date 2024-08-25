@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Table with Editable Inputs</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 4px 8px;
+            border: 1px solid #ddd;
+            line-height: 1.2; /*Reduce the line height*/
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 4px;
+            border: none;
+            outline: none;
+        }
+        .col1 {
+            width: 25%;
+            text-align: center; /* Centering the text in the first column */
+        }
+        .col2 {
+            width: 10%;
+            text-align: center;
+        }
+        .col3 {
+            width: 10%;
+        }
+        .col4 {
+            width: 15%;
+        }
+        .col5 {
+            width: 10%;
+        }
+        .col6 {
+            width: 8%;
+        }
+        .col7 {
+            width: 15%;
+        }
+        .col8 {
+            width: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+
+        function StaticTable() {
+            const [data, setData] = React.useState([
+                { task: "Onboarding Call", col1: "", col2: "", col3: "", col4: "", col5: "", col6: ""},
+                { task: "Google Search Console Access", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Google Analytics Access", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Website Access", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Technical Audit", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Anchor Text and Semantic Analysis", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Competitor Analysis", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Anchor Text / URL Mapping", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Google Data Studio Report + Local Reporting Suite", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Site Level Optimization", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "On Page Optimization", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Content Creation", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Content Publishing", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Premium Press Release", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Authority Niche Placements", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Review Management", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Index Links", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                { task: "Video Recap", col1: "", col2: "", col3: "", col4: "", col5: "", col6: "" },
+                // Add more rows as necessary
+            ]);
+
+            const handleInputChange = (index, column, value) => {
+                const newData = [...data];
+                newData[index][column] = value;
+                setData(newData);
+            };
+
+            return (
+                <table>
+                    <thead>
+                        <tr>
+                            <th className="col1">MONTH 1</th>
+                            <th className="col2" colspan="6"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((row, index) => (
+                            <tr key={index}>
+                                <td className="col1">{row.task}</td>
+                                <td className="col3"><input type="text" value={row.col1} onChange={(e) => handleInputChange(index, 'col1', e.target.value)} /></td>
+                                <td className="col4"><input type="text" value={row.col2} onChange={(e) => handleInputChange(index, 'col2', e.target.value)} /></td>
+                                <td className="col5"><input type="text" value={row.col3} onChange={(e) => handleInputChange(index, 'col3', e.target.value)} /></td>
+                                <td className="col6"><input type="text" value={row.col4} onChange={(e) => handleInputChange(index, 'col4', e.target.value)} /></td>
+                                <td className="col7"><input type="text" value={row.col5} onChange={(e) => handleInputChange(index, 'col5', e.target.value)} /></td>
+                                <td className="col8"><input type="text" value={row.col6} onChange={(e) => handleInputChange(index, 'col6', e.target.value)} /></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            );
+        }
+
+        ReactDOM.render(<StaticTable />, document.getElementById('root'));
+    </script>
+</body>
+</html>
